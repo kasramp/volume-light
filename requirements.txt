@@ -1,0 +1,11 @@
+evdev==1.4.0
+keybind==0.3.0
+pulsectl==21.9.1
+pycairo==1.20.1
+PyGObject==3.40.1
+PyGObject-stubs==0.0.2
+pynput==1.7.3
+python-xlib==0.31
+python3-keybinder==1.1.2
+python3-xlib==0.15
+six==1.16.0
