@@ -1,9 +1,9 @@
 import gi
 
-gi.require_versions({'Notify': '0.7', 'Gio': '2.0', 'GLib': '2.0'})
+gi.require_versions({'Notify': '0.7', 'Gio': '2.0', 'GLib': '2.0', 'AppIndicator3': '0.1', 'Gtk': '3.0'})
 from pulsectl import Pulse
 from pynput import keyboard
-from gi.repository import Notify, GLib
+from gi.repository import Notify, GLib, Gtk, AppIndicator3
 
 
 def main():
@@ -16,6 +16,20 @@ def main():
     notification = Notify.Notification.new('')
     notification.set_timeout(Notify.EXPIRES_DEFAULT)
     notification.set_hint("synchronous", GLib.Variant.new_strv("volume"))
+
+    indicator = AppIndicator3.Indicator.new('volume-light', 'volume-light', AppIndicator3.IndicatorCategory.OTHER)
+    indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
+    indicator.set_icon('audio-volume-low')
+
+    ## StatusIcon is deprecated, better use Xapp by mint https://blog.linuxmint.com/?p=3795
+    ## Or stick to appIndicator
+    # tray = Gtk.StatusIcon()
+    # tray.set_from_icon_name("audio-volume-low")
+    # tray.set_tooltip_text("Test")
+
+
+    ## The main blocks keyboard listener handler
+    Gtk.main()
 
     def on_press(key):
         try:
