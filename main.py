@@ -62,6 +62,18 @@ def main():
 
     listener = keyboard.Listener(on_press=on_press)
     listener.start()
+
+    # UI
+    menu = Gtk.Menu()
+    quit_item = Gtk.MenuItem(label="Quit")
+    quit_item.connect("activate", quit)
+    quit_item.show()
+    menu.append(quit_item)
+    separator = Gtk.SeparatorMenuItem()
+    separator.show()
+    menu.append(separator)
+    indicator.set_menu(menu)
+
     Gtk.main()
     Notify.uninit()
 
